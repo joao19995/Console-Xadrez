@@ -1,6 +1,6 @@
 ﻿using System;
 using Tabuleiro;
-using Xadrez.xadrez;
+using xadrez;
 
 namespace Xadrez
 {
@@ -8,20 +8,9 @@ namespace Xadrez
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Tabuleiro.Tabuleiro tab = new Tabuleiro.Tabuleiro(8, 8);
-
-                tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 1));
-                tab.ColocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 0));
-                tab.ColocarPeca(new Rei(tab, Cor.Preta), new Posicao(6, 0));
-
-                Tela.ImprimirTabuleiro(tab);
-            }catch (TabuleiroException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-           
+            PosicaoXadrez pos = new PosicaoXadrez('a', 1);
+            Console.WriteLine(pos);
+            Console.WriteLine(pos.toposicao());
 
             Console.ReadLine();
         }
