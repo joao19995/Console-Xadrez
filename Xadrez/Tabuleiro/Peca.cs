@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Tabuleiro ;
 
 namespace Tabuleiro
 {
@@ -24,9 +21,28 @@ namespace Tabuleiro
         }
 
         public abstract bool[,] MovimentosPossiveis();
-        
 
-        
+
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for (int i = 0; i < tabuleiro.linhas; i++)
+            {
+                for (int j = 0; j < tabuleiro.colunas; j++)
+                {
+                    if (mat[i, j]==true)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool PodeMoverPara(Posicao pos)
+        {
+            return MovimentosPossiveis()[pos.Linha, pos.Coluna];
+        }
 
         public void incrementarQtDeMovimetos()
         {
