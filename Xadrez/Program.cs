@@ -8,6 +8,7 @@ namespace Xadrez
         static void Main(string[] args)
         {
             Tabuleiro.Tabuleiro tab = new Tabuleiro.Tabuleiro(8, 8);
+            Tela.ImprimirTabuleiro(tab);
             Console.ReadLine();
         }
     }
