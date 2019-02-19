@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         
 
@@ -22,6 +22,11 @@ namespace Tabuleiro
             this.tabuleiro = tabuleiro;
             this.qtMovimentos = 0;
         }
+
+        public abstract bool[,] MovimentosPossiveis();
+        
+
+        
 
         public void incrementarQtDeMovimetos()
         {
