@@ -1,0 +1,126 @@
+﻿using System;
+using Tabuleiro;
+
+namespace xadrez
+{
+    class Dama : Peca
+    {
+        public Dama(Tabuleiro.Tabuleiro tab, Cor cor) : base(tab, cor)
+        {
+        }
+        public override string ToString()
+        {
+            return "B";
+        }
+
+        private bool podeMover(Posicao pos)
+        {
+            Peca p = tabuleiro.peca(pos);
+            return p == null || p.cor != cor;
+        }
+
+        public override bool[,] MovimentosPossiveis()
+        {
+            bool[,] mat = new bool[tabuleiro.linhas, tabuleiro.colunas];
+            Posicao pos = new Posicao(0, 0);
+
+            //no
+            pos.defenirValores(posicao.Linha - 1, posicao.Coluna - 1);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.defenirValores(pos.Linha - 1, pos.Coluna - 1);
+            }
+
+
+            //ne
+            pos.defenirValores(posicao.Linha - 1, posicao.Coluna + 1);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.defenirValores(pos.Linha - 1, pos.Coluna + 1);
+            }
+
+            //so
+            //cima
+            pos.defenirValores(posicao.Linha + 1, posicao.Coluna - 1);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.defenirValores(pos.Linha + 1, pos.Coluna - 1);
+            }
+
+            //se           
+            pos.defenirValores(posicao.Linha + 1, posicao.Coluna + 1);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.defenirValores(pos.Linha + 1, pos.Coluna + 1);
+            }
+            pos.defenirValores(posicao.Linha - 1, posicao.Coluna);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.Linha = pos.Linha - 1;
+            }
+
+
+            //baixo
+            pos.defenirValores(posicao.Linha + 1, posicao.Coluna);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.Linha = pos.Linha + 1;
+            }
+
+            //direita
+            pos.defenirValores(posicao.Linha, posicao.Coluna + 1);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.Coluna = pos.Coluna + 1;
+            }
+
+            //direita
+            pos.defenirValores(posicao.Linha, posicao.Coluna - 1);
+            while (tabuleiro.posValida(pos) && podeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.Coluna = pos.Coluna - 1;
+            }
+            return mat;
+        }
+    }
+}
