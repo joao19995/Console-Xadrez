@@ -51,14 +51,14 @@ namespace xadrez
             }
 
             //baixo
-            pos.defenirValores(posicao.Linha, posicao.Coluna);
+            pos.defenirValores(posicao.Linha +1, posicao.Coluna);
             if (tabuleiro.posValida(pos) && podeMover(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
             }
 
             //so
-            pos.defenirValores(posicao.Linha+11, posicao.Coluna -1);
+            pos.defenirValores(posicao.Linha+1, posicao.Coluna -1);
             if (tabuleiro.posValida(pos) && podeMover(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
